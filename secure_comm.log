@@ -1,0 +1,270 @@
+2025-03-18 22:18:36,537 - INFO - Cryptography initialized with sequence: rsa -> tdes -> ecc -> aes-gcm
+2025-03-18 22:26:33,551 - ERROR - Failed to store credentials: 'ZKPAuthenticator' object has no attribute 'secret_keys'
+2025-03-18 22:35:05,448 - INFO - Cryptography initialized with sequence: rsa -> des -> ecc -> tdes
+2025-03-18 22:35:40,551 - ERROR - Failed to store credentials: 'ZKPAuthenticator' object has no attribute 'secret_keys'
+2025-03-18 22:41:05,655 - ERROR - Failed to store credentials: 'ZKPAuthenticator' object has no attribute 'secret_keys'
+2025-03-18 22:44:48,041 - INFO - Cryptography initialized with sequence: rsa -> aes-gcm -> aes -> ecc
+2025-03-18 22:45:05,589 - INFO - Credentials stored successfully for user: Mohanrao
+2025-03-18 22:46:14,331 - INFO - Credentials stored successfully for user: Abhi
+2025-03-18 23:49:04,171 - INFO - Cryptography initialized with sequence: rsa -> aes-gcm -> aes -> des
+2025-03-18 23:49:47,202 - INFO - Generated ZKP challenge for Abhi: -1
+2025-03-18 23:49:47,204 - ERROR - Authentication failed for Abhi: User not registered
+2025-03-18 23:50:15,129 - INFO - Sending query to Abhi
+2025-03-18 23:50:16,138 - INFO - Query result for Abhi: Busy
+2025-03-18 23:50:20,402 - INFO - Generated ZKP challenge for Abhi: -1
+2025-03-18 23:50:20,402 - ERROR - Authentication failed for Abhi: User not registered
+2025-03-18 23:50:21,357 - INFO - Generated ZKP challenge for Abhi: -1
+2025-03-18 23:50:21,357 - ERROR - Authentication failed for Abhi: User not registered
+2025-03-18 23:50:21,597 - INFO - Generated ZKP challenge for Abhi: -1
+2025-03-18 23:50:21,608 - ERROR - Authentication failed for Abhi: User not registered
+2025-03-18 23:50:44,248 - INFO - Generated ZKP challenge for Mohanrao: -1
+2025-03-18 23:50:44,249 - ERROR - Authentication failed for Mohanrao: User not registered
+2025-03-18 23:56:43,361 - INFO - Cryptography initialized with sequence: rsa -> aes -> aes-gcm
+2025-03-18 23:57:00,662 - ERROR - User Mohanrao not found in secret_keys
+2025-03-18 23:57:00,662 - INFO - Generated ZKP challenge for Mohanrao: -1
+2025-03-18 23:57:00,662 - ERROR - Authentication failed for Mohanrao: User not registered
+2025-03-18 23:59:30,675 - INFO - Cryptography initialized with sequence: rsa -> aes-gcm -> ecc -> aes
+2025-03-19 00:01:59,585 - INFO - User Abhi registered with ZKP secret key: secret_5089769944865374037
+2025-03-19 00:01:59,586 - INFO - Credentials stored successfully for user: Abhi
+2025-03-19 00:03:18,673 - INFO - User Mohan registered with ZKP secret key: secret_1399925613311421295
+2025-03-19 00:03:18,673 - INFO - Credentials stored successfully for user: Mohan
+2025-03-19 00:03:45,055 - INFO - Generated challenge 3 for user Abhi
+2025-03-19 00:03:45,055 - INFO - Generated ZKP challenge for Abhi: 3
+2025-03-19 00:03:45,055 - INFO - Simulated response for Abhi: 0d47276f5fc34c15e9dc39c20189422432b438c30cba1a301ef04cecbda5b83f
+2025-03-19 00:03:45,057 - INFO - Verification result for Abhi: Authentication successful
+2025-03-19 00:03:45,061 - INFO - Authentication successful for Abhi
+2025-03-19 00:04:11,419 - INFO - Sending query to Abhi
+2025-03-19 00:04:12,435 - INFO - Query result for Abhi: Busy
+2025-03-19 00:16:21,494 - INFO - Cryptography initialized with sequence: rsa -> aes -> des -> aes-gcm -> ecc
+2025-03-19 00:16:39,390 - ERROR - User Tank 1 not found in secret_keys
+2025-03-19 00:16:39,390 - ERROR - Failed to generate challenge for Tank 1: User not registered
+2025-03-19 00:16:39,390 - ERROR - User Tank 2 not found in secret_keys
+2025-03-19 00:16:39,390 - ERROR - Failed to generate challenge for Tank 2: User not registered
+2025-03-19 00:16:39,390 - ERROR - User Tank 3 not found in secret_keys
+2025-03-19 00:16:39,390 - ERROR - Failed to generate challenge for Tank 3: User not registered
+2025-03-19 00:16:39,390 - ERROR - User Tank 4 not found in secret_keys
+2025-03-19 00:16:39,390 - ERROR - Failed to generate challenge for Tank 4: User not registered
+2025-03-19 00:16:39,390 - ERROR - User Tank 5 not found in secret_keys
+2025-03-19 00:16:39,390 - ERROR - Failed to generate challenge for Tank 5: User not registered
+2025-03-19 00:16:39,390 - INFO - Generated challenges: {1: None, 2: None, 3: None, 4: None, 5: None}
+2025-03-19 00:18:52,229 - INFO - User Tank1 registered with ZKP secret key: secret_2163650115478310592
+2025-03-19 00:18:52,231 - INFO - Credentials stored successfully for user: Tank1
+2025-03-19 00:19:11,768 - INFO - User Tank2 registered with ZKP secret key: secret_-1894361920085753657
+2025-03-19 00:19:11,768 - INFO - Credentials stored successfully for user: Tank2
+2025-03-19 00:19:36,000 - INFO - User Tank3 registered with ZKP secret key: secret_8988425317769595489
+2025-03-19 00:19:36,000 - INFO - Credentials stored successfully for user: Tank3
+2025-03-19 00:20:03,420 - INFO - User Tank4 registered with ZKP secret key: secret_-6937816844226756842
+2025-03-19 00:20:03,420 - INFO - Credentials stored successfully for user: Tank4
+2025-03-19 00:20:36,414 - INFO - User Tank5 registered with ZKP secret key: secret_4208469840244156652
+2025-03-19 00:20:36,416 - INFO - Credentials stored successfully for user: Tank5
+2025-03-19 00:21:05,884 - ERROR - User Tank 1 not found in secret_keys
+2025-03-19 00:21:05,884 - ERROR - Failed to generate challenge for Tank 1: User not registered
+2025-03-19 00:21:05,884 - ERROR - User Tank 2 not found in secret_keys
+2025-03-19 00:21:05,884 - ERROR - Failed to generate challenge for Tank 2: User not registered
+2025-03-19 00:21:05,884 - ERROR - User Tank 3 not found in secret_keys
+2025-03-19 00:21:05,884 - ERROR - Failed to generate challenge for Tank 3: User not registered
+2025-03-19 00:21:05,884 - ERROR - User Tank 4 not found in secret_keys
+2025-03-19 00:21:05,892 - ERROR - Failed to generate challenge for Tank 4: User not registered
+2025-03-19 00:21:05,892 - ERROR - User Tank 5 not found in secret_keys
+2025-03-19 00:21:05,892 - ERROR - Failed to generate challenge for Tank 5: User not registered
+2025-03-19 00:21:05,892 - INFO - Generated challenges: {1: None, 2: None, 3: None, 4: None, 5: None}
+2025-03-19 00:27:09,845 - INFO - Cryptography initialized with sequence: rsa -> tdes -> ecc
+2025-03-19 00:27:35,294 - ERROR - User Tank1 not found in secret_keys
+2025-03-19 00:27:35,294 - ERROR - Failed to generate challenge for Tank 1: User not registered
+2025-03-19 00:27:35,294 - ERROR - User Tank2 not found in secret_keys
+2025-03-19 00:27:35,294 - ERROR - Failed to generate challenge for Tank 2: User not registered
+2025-03-19 00:27:35,305 - ERROR - User Tank3 not found in secret_keys
+2025-03-19 00:27:35,305 - ERROR - Failed to generate challenge for Tank 3: User not registered
+2025-03-19 00:27:35,305 - ERROR - User Tank4 not found in secret_keys
+2025-03-19 00:27:35,305 - ERROR - Failed to generate challenge for Tank 4: User not registered
+2025-03-19 00:27:35,305 - ERROR - User Tank5 not found in secret_keys
+2025-03-19 00:27:35,305 - ERROR - Failed to generate challenge for Tank 5: User not registered
+2025-03-19 00:27:35,305 - INFO - Generated challenges: {1: None, 2: None, 3: None, 4: None, 5: None}
+2025-03-19 00:31:24,595 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 00:31:24,681 - INFO - Cryptography initialized with sequence: rsa -> ecc
+2025-03-19 00:31:37,529 - INFO - Generated challenge 5360 for user Tank1
+2025-03-19 00:31:37,529 - INFO - Generated challenge 3 for user Tank2
+2025-03-19 00:31:37,529 - INFO - Generated challenge 6853 for user Tank3
+2025-03-19 00:31:37,529 - INFO - Generated challenge 2832 for user Tank4
+2025-03-19 00:31:37,529 - INFO - Generated challenge 1242 for user Tank5
+2025-03-19 00:31:37,529 - INFO - Generated challenges: {1: 5360, 2: 3, 3: 6853, 4: 2832, 5: 1242}
+2025-03-19 00:31:51,819 - INFO - Verification result for Tank 1: No challenge found for user
+2025-03-19 00:40:40,091 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 00:40:40,180 - INFO - Cryptography initialized with sequence: rsa -> des -> ecc -> tdes
+2025-03-19 00:40:56,909 - INFO - Generated challenge 1 for user Tank1
+2025-03-19 00:40:56,909 - INFO - Generated challenge 2 for user Tank2
+2025-03-19 00:40:56,909 - INFO - Generated challenge 1 for user Tank3
+2025-03-19 00:40:56,909 - INFO - Generated challenge 5 for user Tank4
+2025-03-19 00:40:56,919 - INFO - Generated challenge 5 for user Tank5
+2025-03-19 00:40:56,919 - INFO - Generated challenges: {1: 1, 2: 2, 3: 1, 4: 5, 5: 5}
+2025-03-19 00:41:25,721 - INFO - Verification result for Tank 1: No challenge found for user
+2025-03-19 00:41:32,876 - INFO - Sending query to Tank1
+2025-03-19 00:41:33,905 - INFO - Query result for Tank1: Busy
+2025-03-19 00:52:28,827 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 00:52:28,905 - INFO - Cryptography initialized with sequence: rsa -> aes -> tdes
+2025-03-19 00:52:49,476 - INFO - Generated challenge 5 for user Tank1
+2025-03-19 00:52:49,478 - INFO - Generated challenge 2 for user Tank2
+2025-03-19 00:52:49,478 - INFO - Generated challenge 0 for user Tank3
+2025-03-19 00:52:49,478 - INFO - Generated challenge 2 for user Tank4
+2025-03-19 00:52:49,479 - INFO - Generated challenge 3 for user Tank5
+2025-03-19 00:52:49,479 - INFO - Generated challenges: {1: 5, 2: 2, 3: 0, 4: 2, 5: 3}
+2025-03-19 00:54:08,376 - INFO - Verification result for Tank 2: No challenge found for user
+2025-03-19 00:54:25,710 - INFO - Verification result for Tank 3: No challenge found for user
+2025-03-19 00:55:17,024 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 00:55:17,094 - INFO - Cryptography initialized with sequence: rsa -> aes -> ecc -> des
+2025-03-19 00:55:33,183 - INFO - Generated challenge 2 for user Tank1
+2025-03-19 00:55:33,183 - INFO - Generated challenge 2 for user Tank2
+2025-03-19 00:55:33,183 - INFO - Generated challenge 1 for user Tank3
+2025-03-19 00:55:33,183 - INFO - Generated challenge 2 for user Tank4
+2025-03-19 00:55:33,183 - INFO - Generated challenge 0 for user Tank5
+2025-03-19 00:55:33,191 - INFO - Generated challenges: {1: 2, 2: 2, 3: 1, 4: 2, 5: 0}
+2025-03-19 00:55:58,424 - INFO - Verification result for Tank 1: No challenge found for user
+2025-03-19 00:56:23,766 - INFO - Verification result for Tank 2: No challenge found for user
+2025-03-19 00:56:35,140 - INFO - Verification result for Tank 3: No challenge found for user
+2025-03-19 00:56:47,457 - INFO - Verification result for Tank 4: No challenge found for user
+2025-03-19 00:56:58,199 - INFO - Verification result for Tank 5: No challenge found for user
+2025-03-19 01:06:27,147 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 01:06:27,295 - INFO - Cryptography initialized with sequence: rsa -> ecc -> aes-gcm -> aes
+2025-03-19 01:06:42,038 - INFO - Generated challenge 1 for user Tank1
+2025-03-19 01:06:42,038 - INFO - Generated challenge 1 for user Tank2
+2025-03-19 01:06:42,038 - INFO - Generated challenge 6 for user Tank3
+2025-03-19 01:06:42,038 - INFO - Generated challenge 6 for user Tank4
+2025-03-19 01:06:42,043 - INFO - Generated challenge 0 for user Tank5
+2025-03-19 01:06:42,043 - INFO - Generated challenges: {1: 1, 2: 1, 3: 6, 4: 6, 5: 0}
+2025-03-19 01:06:59,788 - INFO - Verification result for Tank5: Authentication failed
+2025-03-19 01:07:18,586 - INFO - Verification result for Tank4: Authentication successful
+2025-03-19 01:07:31,239 - INFO - Verification result for Tank1: Authentication failed
+2025-03-19 01:07:41,410 - INFO - Verification result for Tank2: Authentication failed
+2025-03-19 01:07:52,309 - INFO - Verification result for Tank3: Authentication successful
+2025-03-19 01:07:59,597 - INFO - Sending query to ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']
+2025-03-19 01:08:00,612 - INFO - Query result for ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']: Away
+2025-03-19 01:14:24,382 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 01:14:24,477 - INFO - Cryptography initialized with sequence: rsa -> ecc -> tdes
+2025-03-19 01:14:41,612 - INFO - Generated challenge 2 for user Tank1
+2025-03-19 01:14:41,612 - INFO - Generated challenge 4 for user Tank2
+2025-03-19 01:14:41,612 - INFO - Generated challenge 6 for user Tank3
+2025-03-19 01:14:41,612 - INFO - Generated challenge 6 for user Tank4
+2025-03-19 01:14:41,614 - INFO - Generated challenge 1 for user Tank5
+2025-03-19 01:14:41,614 - INFO - Generated challenges: {1: 2, 2: 4, 3: 6, 4: 6, 5: 1}
+2025-03-19 01:15:04,223 - INFO - Verification result for Tank1: Authentication successful
+2025-03-19 01:15:15,607 - INFO - Verification result for Tank2: Authentication successful
+2025-03-19 01:15:26,512 - INFO - Verification result for Tank3: Authentication successful
+2025-03-19 01:15:39,174 - INFO - Verification result for Tank4: Authentication successful
+2025-03-19 01:15:50,056 - INFO - Verification result for Tank5: Authentication failed
+2025-03-19 01:16:06,487 - INFO - Sending query to ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']
+2025-03-19 01:16:07,507 - INFO - Query result for ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']: Away
+2025-03-19 01:28:08,718 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 01:28:08,803 - INFO - Cryptography initialized with sequence: rsa -> ecc -> aes -> des
+2025-03-19 01:28:29,385 - INFO - Generated challenge 6 for user Tank1
+2025-03-19 01:28:29,385 - INFO - Generated challenge 5 for user Tank2
+2025-03-19 01:28:29,385 - INFO - Generated challenge 2 for user Tank3
+2025-03-19 01:28:29,388 - INFO - Generated challenge 1 for user Tank4
+2025-03-19 01:28:29,388 - INFO - Generated challenge 4 for user Tank5
+2025-03-19 01:28:29,388 - INFO - Generated challenges: {1: 6, 2: 5, 3: 2, 4: 1, 5: 4}
+2025-03-19 01:28:55,225 - INFO - Verification result for Tank1: Authentication successful
+2025-03-19 01:29:19,502 - INFO - Verification result for Tank3: Authentication successful
+2025-03-19 01:29:30,570 - INFO - Verification result for Tank4: Authentication failed
+2025-03-19 01:29:41,711 - INFO - Verification result for Tank5: Authentication successful
+2025-03-19 01:29:50,603 - INFO - Verification result for Tank2: Authentication failed
+2025-03-19 01:29:59,490 - INFO - Sending query to ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']
+2025-03-19 01:30:00,500 - INFO - Query result for ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']: Busy
+2025-03-19 01:31:34,812 - INFO - Sending query to ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']
+2025-03-19 01:31:35,820 - INFO - Query result for ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']: Offline
+2025-03-19 01:31:38,385 - INFO - Sending query to ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']
+2025-03-19 01:31:39,397 - INFO - Query result for ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']: Busy
+2025-03-19 01:34:28,472 - INFO - Sending query to ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']
+2025-03-19 01:34:29,481 - INFO - Query result for ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']: Away
+2025-03-19 09:22:32,304 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 09:22:32,448 - INFO - Cryptography initialized with sequence: rsa -> des
+2025-03-19 09:23:22,357 - INFO - Generated challenge 5 for user Tank1
+2025-03-19 09:23:22,364 - INFO - Generated challenge 4 for user Tank2
+2025-03-19 09:23:22,364 - INFO - Generated challenge 6 for user Tank3
+2025-03-19 09:23:22,364 - INFO - Generated challenge 2 for user Tank4
+2025-03-19 09:23:22,364 - INFO - Generated challenge 3 for user Tank5
+2025-03-19 09:23:22,364 - INFO - Generated challenges: {1: 5, 2: 4, 3: 6, 4: 2, 5: 3}
+2025-03-19 09:24:14,140 - INFO - Verification result for Tank2: Authentication successful
+2025-03-19 09:24:28,481 - INFO - Verification result for Tank3: Authentication successful
+2025-03-19 09:24:40,743 - INFO - Verification result for Tank4: Authentication successful
+2025-03-19 09:24:54,036 - INFO - Verification result for Tank5: Authentication failed
+2025-03-19 09:24:57,302 - INFO - Sending query to ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']
+2025-03-19 09:24:58,318 - INFO - Query result for ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5']: Online
+2025-03-19 09:40:12,199 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 09:40:12,277 - INFO - Cryptography initialized with sequence: rsa -> aes -> aes-gcm -> des -> tdes
+2025-03-19 09:40:31,769 - INFO - Generated challenge 5 for user Tank1
+2025-03-19 09:40:31,769 - INFO - Generated challenge 6 for user Tank2
+2025-03-19 09:40:31,769 - INFO - Generated challenge 5 for user Tank3
+2025-03-19 09:40:31,769 - INFO - Generated challenge 0 for user Tank4
+2025-03-19 09:40:31,769 - INFO - Generated challenge 6 for user Tank5
+2025-03-19 09:40:31,769 - INFO - Generated challenges: {1: 5, 2: 6, 3: 5, 4: 0, 5: 6}
+2025-03-19 09:40:49,043 - INFO - Verification result for Tank5: Authentication successful
+2025-03-19 09:41:01,668 - INFO - Verification result for Tank4: Authentication failed
+2025-03-19 09:41:22,161 - INFO - Verification result for Tank2: Authentication successful
+2025-03-19 09:41:33,441 - WARNING - Query failed: ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5'] is not authenticated
+2025-03-19 09:41:37,008 - WARNING - Query failed: ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5'] is not authenticated
+2025-03-19 09:41:37,687 - WARNING - Query failed: ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5'] is not authenticated
+2025-03-19 09:43:48,176 - INFO - Verification result for Tank2: Authentication successful
+2025-03-19 10:06:26,784 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 10:06:26,864 - INFO - Cryptography initialized with sequence: rsa -> ecc -> des -> tdes
+2025-03-19 10:06:42,696 - INFO - Generated challenge 3 for user Tank1
+2025-03-19 10:06:42,698 - INFO - Generated challenge 4 for user Tank2
+2025-03-19 10:06:42,698 - INFO - Generated challenge 1 for user Tank3
+2025-03-19 10:06:42,699 - INFO - Generated challenge 4 for user Tank4
+2025-03-19 10:06:42,700 - INFO - Generated challenge 4 for user Tank5
+2025-03-19 10:06:42,700 - INFO - Generated challenges: {1: 3, 2: 4, 3: 1, 4: 4, 5: 4}
+2025-03-19 10:07:06,542 - INFO - Verification result for Tank3: Authentication failed
+2025-03-19 10:07:28,486 - INFO - Verification result for Tank1: Authentication failed
+2025-03-19 10:07:40,183 - INFO - Verification result for Tank2: Authentication successful
+2025-03-19 10:07:47,777 - INFO - Verification result for Tank4: Authentication successful
+2025-03-19 10:07:55,737 - INFO - Verification result for Tank5: Authentication successful
+2025-03-19 10:07:58,477 - WARNING - Query failed: ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5'] is not authenticated
+2025-03-19 10:14:13,746 - WARNING - Query failed: ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5'] is not authenticated
+2025-03-19 10:24:07,902 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 10:24:07,993 - INFO - Cryptography initialized with sequence: rsa -> aes -> des
+2025-03-19 10:24:26,096 - INFO - Generated challenge 2 for user Tank1
+2025-03-19 10:24:26,096 - INFO - Generated challenge 5 for user Tank2
+2025-03-19 10:24:26,096 - INFO - Generated challenge 6 for user Tank3
+2025-03-19 10:24:26,096 - INFO - Generated challenge 6 for user Tank4
+2025-03-19 10:24:26,096 - INFO - Generated challenge 5 for user Tank5
+2025-03-19 10:24:26,096 - INFO - Generated challenges: {1: 2, 2: 5, 3: 6, 4: 6, 5: 5}
+2025-03-19 10:25:18,020 - INFO - Verification result for Tank1: Authentication successful
+2025-03-19 10:25:33,633 - INFO - Verification result for Tank3: Authentication successful
+2025-03-19 10:25:38,969 - INFO - Verification result for Tank4: Authentication successful
+2025-03-19 10:25:46,440 - WARNING - Query failed: ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5'] is not authenticated
+2025-03-19 10:40:29,398 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 10:40:29,512 - INFO - Cryptography initialized with sequence: rsa -> tdes -> des -> ecc
+2025-03-19 10:40:47,053 - INFO - Generated challenge 4 for user Tank1
+2025-03-19 10:40:47,053 - INFO - Generated challenge 2 for user Tank2
+2025-03-19 10:40:47,056 - INFO - Generated challenge 2 for user Tank3
+2025-03-19 10:40:47,056 - INFO - Generated challenge 2 for user Tank4
+2025-03-19 10:40:47,056 - INFO - Generated challenge 0 for user Tank5
+2025-03-19 10:40:47,056 - INFO - Generated challenges: {1: 4, 2: 2, 3: 2, 4: 2, 5: 0}
+2025-03-19 10:41:02,669 - INFO - Verification result for Tank1: Authentication successful
+2025-03-19 10:41:13,616 - INFO - Verification result for Tank2: Authentication successful
+2025-03-19 10:41:17,061 - INFO - Verification result for Tank3: Authentication successful
+2025-03-19 10:41:20,086 - INFO - Verification result for Tank4: Authentication successful
+2025-03-19 10:41:28,766 - INFO - Verification result for Tank5: Authentication failed
+2025-03-19 10:41:36,045 - WARNING - Query failed: ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5'] is not authenticated
+2025-03-19 10:54:04,948 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 10:54:05,015 - INFO - Cryptography initialized with sequence: rsa -> aes -> aes-gcm -> tdes
+2025-03-19 10:57:57,624 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 10:57:57,689 - INFO - Cryptography initialized with sequence: rsa -> aes -> tdes -> des -> ecc
+2025-03-19 10:59:15,967 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 10:59:16,033 - INFO - Cryptography initialized with sequence: rsa -> aes-gcm -> des -> tdes
+2025-03-19 10:59:40,598 - INFO - Generated challenge 5 for user Tank1
+2025-03-19 10:59:40,598 - INFO - Generated challenge 1 for user Tank2
+2025-03-19 10:59:40,598 - INFO - Generated challenge 0 for user Tank3
+2025-03-19 10:59:40,598 - INFO - Generated challenge 6 for user Tank4
+2025-03-19 10:59:40,598 - INFO - Generated challenge 2 for user Tank5
+2025-03-19 10:59:40,598 - INFO - Generated challenges: {1: 5, 2: 1, 3: 0, 4: 6, 5: 2}
+2025-03-19 11:01:29,901 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 11:01:29,974 - INFO - Cryptography initialized with sequence: rsa -> aes-gcm -> des
+2025-03-19 11:03:23,033 - INFO - Secret keys loaded successfully from credentials.csv
+2025-03-19 11:03:23,092 - INFO - Cryptography initialized with sequence: rsa -> tdes -> des
+2025-03-19 11:04:22,631 - INFO - Generated challenge 0 for user Tank1
+2025-03-19 11:04:22,631 - INFO - Generated challenge 5 for user Tank2
+2025-03-19 11:04:22,631 - INFO - Generated challenge 4 for user Tank3
+2025-03-19 11:04:22,631 - INFO - Generated challenge 0 for user Tank4
+2025-03-19 11:04:22,631 - INFO - Generated challenge 4 for user Tank5
+2025-03-19 11:04:22,631 - INFO - Generated challenges: {1: 0, 2: 5, 3: 4, 4: 0, 5: 4}
+2025-03-19 11:04:48,484 - WARNING - Query failed: ['Tank1', 'Tank2', 'Tank3', 'Tank4', 'Tank5'] is not authenticated
+2025-03-19 11:05:16,124 - WARNING - Timer label destroyed before countdown completed.
