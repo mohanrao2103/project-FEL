@@ -188,9 +188,16 @@ class SecureCommunicationSystem:
                 self.current_user = username
                 self.online_users.append(username)
                 login_win.destroy()
-                self.show_main_interface()
+            
+                # Call the appropriate interface based on the username
+                if self.current_user.lower() == "commander":
+                    self.show_commander_interface()
+                elif self.current_user.lower().startswith("tank"):
+                    self.show_tank_interface()
+                else:
+                    messagebox.showerror("Login Error", "Invalid user type")
             else:
-                messagebox.showerror("Login Error", "Invalid credentials")
+                messagebox.showerror("Login Error", "Invalid credentials")            
 
         # Login button
         login_button = tk.Button(frame,
@@ -338,21 +345,45 @@ class SecureCommunicationSystem:
                 if row[0] == username and row[1] == hashed_password:
                     return True
         return False
+    
+    # def login_action():
+    #     """Handle login action."""
+    #     username = username_entry.get()
+    #     password = password_entry.get()
+        
+    #     if not username or not password:
+    #         messagebox.showerror("Login Error", "Please fill in all fields")
+    #         return
+            
+    #     if self.verify_login(username, password):
+    #         self.current_user = username
+    #         self.online_users.append(username)
+    #         login_win.destroy()
+            
+    #         # Call the appropriate interface based on the username
+    #         if self.current_user.lower() == "commander":
+    #             self.show_commander_interface()
+    #         elif self.current_user.lower().startswith("tank"):
+    #             self.show_tank_interface()
+    #         else:
+    #             messagebox.showerror("Login Error", "Invalid user type")
+    #     else:
+    #         messagebox.showerror("Login Error", "Invalid credentials")
 
-    def show_main_interface(self) -> None:
-        """Show the main interface."""
+    def show_commander_interface(self) -> None:
+        """Show the Commander-specific interface."""
         # Clear existing widgets
         for widget in self.root.winfo_children():
             widget.destroy()
-
+    
         # Create main frame
         main_frame = tk.Frame(self.root, bg="#f0f0f0")
         main_frame.pack(fill="both", expand=True)
-
+    
         # Top bar
         top_bar = tk.Frame(main_frame, bg="#4a7abc", height=50)
         top_bar.pack(fill="x")
-
+    
         # User info
         user_label = tk.Label(top_bar,
             text=f"Logged in as: {self.current_user}",
@@ -360,7 +391,7 @@ class SecureCommunicationSystem:
             bg="#4a7abc",
             fg="white")
         user_label.pack(side="left", padx=20, pady=10)
-
+    
         # Logout button
         logout_button = tk.Button(top_bar,
             text="Logout",
@@ -368,33 +399,38 @@ class SecureCommunicationSystem:
             bg="#f0f0f0",
             command=self.logout)
         logout_button.pack(side="right", padx=20, pady=10)
-
+    
         # Content area
         content_frame = tk.Frame(main_frame, bg="#f0f0f0")
         content_frame.pack(fill="both", expand=True, padx=20, pady=20)
-
+    
         # Left panel - Available users and selecting users
         left_panel = tk.Frame(content_frame, bg="#ffffff", bd=1, relief="solid", width=300)
         left_panel.pack(side="left", fill="y", padx=10, pady=10)
-
+    
         # Middle panel - Tabs (Authentication, Query, Encryption, Decryption, Communication Log)
         middle_panel = tk.Frame(content_frame, bg="#ffffff", bd=1, relief="solid", width=400)
         middle_panel.pack(side="left", fill="both", expand=True, padx=10, pady=10)
-
+    
         # Right panel - Real-Time Map
         right_panel = tk.Frame(content_frame, bg="#ffffff", bd=1, relief="solid", width=400)
         right_panel.pack(side="right", fill="both", expand=True, padx=10, pady=10)
-
+    
         # Add the map widget
-        self.map_widget = TkinterMapView(right_panel, width=600, height=700, corner_radius=0)
+        self.map_widget = TkinterMapView(right_panel, width=400, height=700, corner_radius=0)
         self.map_widget.pack(fill="both", expand=True)
         self.map_widget.set_position(20.0, 78.0)  # Centered on India
         self.map_widget.set_zoom(5)
-
+    
         # Start monitoring CSV updates
         self.start_monitoring()
+    
+        # Create notebook for tabs in the middle panel
+        if hasattr(self, 'tab_control'):
+            self.tab_control.destroy()  # Clear any existing tabs
+        self.tab_control = ttk.Notebook(middle_panel)
 
-        # Users label
+                # Users label
         users_label = tk.Label(left_panel,
             text="Available Users",
             font=("Arial", 14, "bold"),
@@ -462,37 +498,21 @@ class SecureCommunicationSystem:
 
         # Populate the left panel
         self.init_left_panel(left_panel)
-
-        # Select user button
-        select_button = tk.Button(left_panel,
-            text="Select User",
-            font=("Arial", 12),
-            bg="#4a7abc",
-            fg="white",
-            command=self.select_user)
-        select_button.pack(fill="x", padx=10, pady=10)
-
-        # Create notebook for tabs
-        self.tab_control = ttk.Notebook(right_panel)
-        # Create notebook for tabs in the middle panel
-        self.tab_control = ttk.Notebook(middle_panel)
-
-        # Create tabs
+    
+        # Commander-specific tabs
         self.auth_tab = tk.Frame(self.tab_control)
         self.query_tab = tk.Frame(self.tab_control)
         self.encryption_tab = tk.Frame(self.tab_control)
         self.decryption_tab = tk.Frame(self.tab_control)
         self.log_tab = tk.Frame(self.tab_control)
-
+    
         # Add tabs to notebook
         self.tab_control.add(self.auth_tab, text="Authentication")
         self.tab_control.add(self.query_tab, text="Query")
         self.tab_control.add(self.encryption_tab, text="Encryption")
         self.tab_control.add(self.decryption_tab, text="Decryption")
         self.tab_control.add(self.log_tab, text="Communication Log")
-        
-        self.tab_control.pack(expand=True, fill="both")
-
+    
         # Initialize tabs
         self.setup_auth_tab()
         self.setup_query_tab()
@@ -500,8 +520,330 @@ class SecureCommunicationSystem:
         self.setup_decryption_tab()
         self.setup_log_tab()
     
+        self.tab_control.pack(expand=True, fill="both")
+
+    def show_tank_interface(self) -> None:
+        """Show the Tank-specific interface."""
+        # Clear existing widgets
+        for widget in self.root.winfo_children():
+            widget.destroy()
+    
+        # Create main frame
+        main_frame = tk.Frame(self.root, bg="#f0f0f0")
+        main_frame.pack(fill="both", expand=True)
+    
+        # Top bar
+        top_bar = tk.Frame(main_frame, bg="#4a7abc", height=50)
+        top_bar.pack(fill="x")
+    
+        # User info
+        user_label = tk.Label(top_bar,
+            text=f"Logged in as: {self.current_user}",
+            font=("Arial", 12),
+            bg="#4a7abc",
+            fg="white")
+        user_label.pack(side="left", padx=20, pady=10)
+    
+        # Logout button
+        logout_button = tk.Button(top_bar,
+            text="Logout",
+            font=("Arial", 10),
+            bg="#f0f0f0",
+            command=self.logout)
+        logout_button.pack(side="right", padx=20, pady=10)
+    
+        # Content area
+        content_frame = tk.Frame(main_frame, bg="#f0f0f0")
+        content_frame.pack(fill="both", expand=True, padx=20, pady=20)
+    
+        # Middle panel - Tabs (Authentication - Generate Response, Response to Query, Encryption, Decryption, Communication Log)
+        middle_panel = tk.Frame(content_frame, bg="#ffffff", bd=1, relief="solid", width=400)
+        middle_panel.pack(side="left", fill="both", expand=True, padx=10, pady=10)
+    
+        # Right panel - Real-Time Map
+        right_panel = tk.Frame(content_frame, bg="#ffffff", bd=1, relief="solid", width=400)
+        right_panel.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+    
+        # Add the map widget
+        self.map_widget = TkinterMapView(right_panel, width=400, height=700, corner_radius=0)
+        self.map_widget.pack(fill="both", expand=True)
+        self.map_widget.set_position(20.0, 78.0)  # Centered on India
+        self.map_widget.set_zoom(5)
+    
+        # Start monitoring CSV updates
+        self.start_monitoring()
+    
+        # Create notebook for tabs in the middle panel
+        if hasattr(self, 'tab_control'):
+            self.tab_control.destroy()  # Clear any existing tabs
+        self.tab_control = ttk.Notebook(middle_panel)
+    
+        # Tank-specific tabs
+        self.auth_gen_response_tab = tk.Frame(self.tab_control)
+        self.response_to_query_tab = tk.Frame(self.tab_control)
+        self.encryption_tab = tk.Frame(self.tab_control)
+        self.decryption_tab = tk.Frame(self.tab_control)
+        self.log_tab = tk.Frame(self.tab_control)
+    
+        self.tab_control.add(self.auth_gen_response_tab, text="Authentication - Generate Response")
+        self.tab_control.add(self.response_to_query_tab, text="Response to Query")
+        self.tab_control.add(self.encryption_tab, text="Encryption")
+        self.tab_control.add(self.decryption_tab, text="Decryption")
+        self.tab_control.add(self.log_tab, text="Communication Log")
+    
+        # Initialize tabs
+        self.setup_auth_gen_response_tab()
+        self.setup_response_to_query_tab()
+        self.setup_encryption_tab()
+        self.setup_decryption_tab()
+        self.setup_log_tab()
+    
+        self.tab_control.pack(expand=True, fill="both")
+
+    # def show_main_interface(self) -> None:
+    #     """Show the main interface."""
+    #     # Clear existing widgets
+    #     for widget in self.root.winfo_children():
+    #         widget.destroy()
+
+    #     # Create main frame
+    #     main_frame = tk.Frame(self.root, bg="#f0f0f0")
+    #     main_frame.pack(fill="both", expand=True)
+
+    #     # Top bar
+    #     top_bar = tk.Frame(main_frame, bg="#4a7abc", height=50)
+    #     top_bar.pack(fill="x")
+
+    #     # User info
+    #     user_label = tk.Label(top_bar,
+    #         text=f"Logged in as: {self.current_user}",
+    #         font=("Arial", 12),
+    #         bg="#4a7abc",
+    #         fg="white")
+    #     user_label.pack(side="left", padx=20, pady=10)
+
+    #     # Logout button
+    #     logout_button = tk.Button(top_bar,
+    #         text="Logout",
+    #         font=("Arial", 10),
+    #         bg="#f0f0f0",
+    #         command=self.logout)
+    #     logout_button.pack(side="right", padx=20, pady=10)
+
+    #     # Content area
+    #     content_frame = tk.Frame(main_frame, bg="#f0f0f0")
+    #     content_frame.pack(fill="both", expand=True, padx=20, pady=20)
+
+    #     # Left panel - Available users and selecting users
+    #     left_panel = tk.Frame(content_frame, bg="#ffffff", bd=1, relief="solid", width=300)
+    #     left_panel.pack(side="left", fill="y", padx=10, pady=10)
+
+    #     # Middle panel - Tabs (Authentication, Query, Encryption, Decryption, Communication Log)
+    #     middle_panel = tk.Frame(content_frame, bg="#ffffff", bd=1, relief="solid", width=400)
+    #     middle_panel.pack(side="left", fill="both", expand=True, padx=10, pady=10)
+
+    #     # Right panel - Real-Time Map
+    #     right_panel = tk.Frame(content_frame, bg="#ffffff", bd=1, relief="solid", width=400)
+    #     right_panel.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+
+    #     # Add the map widget
+    #     self.map_widget = TkinterMapView(right_panel, width=600, height=700, corner_radius=0)
+    #     self.map_widget.pack(fill="both", expand=True)
+    #     self.map_widget.set_position(20.0, 78.0)  # Centered on India
+    #     self.map_widget.set_zoom(5)
+
+    #     # Start monitoring CSV updates
+    #     self.start_monitoring()
+
+    #     # Create notebook for tabs in the middle panel
+    #     if hasattr(self, 'tab_control'):
+    #         self.tab_control.destroy()  # Clear any existing tabs
+    #     self.tab_control = ttk.Notebook(middle_panel)
+
+    #     # Users label
+    #     users_label = tk.Label(left_panel,
+    #         text="Available Users",
+    #         font=("Arial", 14, "bold"),
+    #         bg="#4a7abc",
+    #         fg="white")
+    #     users_label.pack(fill="x", pady=1)
+
+    #     # User selection checkboxes
+    #     self.user_checkboxes = {}
+    #     self.selected_users = tk.StringVar(value=[])  # Track selected users
+
+    #     def toggle_select_all():
+    #         """Toggle selection of all users."""
+    #         if select_all_var.get():
+    #             # Select all users
+    #             for username, var in self.user_checkboxes.items():
+    #                 var.set(1)
+    #         else:
+    #             # Deselect all users
+    #             for username, var in self.user_checkboxes.items():
+    #                 var.set(0)
+
+    #     # "Select All" checkbox
+    #     select_all_var = tk.IntVar()
+    #     select_all_checkbox = tk.Checkbutton(left_panel,
+    #         text="Select All Users",
+    #         variable=select_all_var,
+    #         command=toggle_select_all,
+    #         font=("Arial", 12),
+    #         bg="#ffffff")
+    #     select_all_checkbox.pack(anchor="w", padx=10, pady=5)
+
+    #     # Populate user list with checkboxes
+    #     if os.path.exists(CSV_FILE):
+    #         with open(CSV_FILE, 'r') as file:
+    #             reader = csv.reader(file)
+    #             next(reader, None)  # Skip header
+    #             for row in reader:
+    #                 username = row[0]
+    #                 if username != self.current_user:
+    #                     var = tk.IntVar()
+    #                     checkbox = tk.Checkbutton(left_panel,
+    #                         text=username,
+    #                         variable=var,
+    #                         font=("Arial", 12),
+    #                         bg="#ffffff")
+    #                     checkbox.pack(anchor="w", padx=10, pady=2)
+    #                     self.user_checkboxes[username] = var
+
+    #     # Select users button
+    #     select_button = tk.Button(left_panel,
+    #         text="Select Users",
+    #         font=("Arial", 12),
+    #         bg="#4a7abc",
+    #         fg="white",
+    #         command=self.select_users)
+    #     select_button.pack(fill="x", padx=10, pady=10)
+
+    #     # User listbox
+    #     self.user_listbox = tk.Listbox(left_panel,
+    #         font=("Arial", 12),
+    #         height=15,
+    #         selectmode="single")
+    #     self.user_listbox.pack(fill="both", expand=True, padx=10, pady=10)
+
+    #     # Populate the left panel
+    #     self.init_left_panel(left_panel)
+
+    #     # Select user button
+    #     select_button = tk.Button(left_panel,
+    #         text="Select User",
+    #         font=("Arial", 12),
+    #         bg="#4a7abc",
+    #         fg="white",
+    #         command=self.select_user)
+    #     select_button.pack(fill="x", padx=10, pady=10)
+        
+    #     # Create notebook for tabs 
+    #     self.tab_control = ttk.Notebook(left_panel)
+    #     self.tab_control = ttk.Notebook(right_panel)
+    #     self.tab_control = ttk.Notebook(middle_panel)
+
+    #     # Create tabs
+    #     self.auth_tab = tk.Frame(self.tab_control)
+    #     self.query_tab = tk.Frame(self.tab_control)
+    #     self.encryption_tab = tk.Frame(self.tab_control)
+    #     self.decryption_tab = tk.Frame(self.tab_control)
+    #     self.log_tab = tk.Frame(self.tab_control)
+
+    #     # Add tabs to notebook
+    #     self.tab_control.add(self.auth_tab, text="Authentication")
+    #     self.tab_control.add(self.query_tab, text="Query")
+    #     self.tab_control.add(self.encryption_tab, text="Encryption")
+    #     self.tab_control.add(self.decryption_tab, text="Decryption")
+    #     self.tab_control.add(self.log_tab, text="Communication Log")
+        
+    #     self.tab_control.pack(expand=True, fill="both")
+
+    #     # Adjust tabs based on user type
+    #     if self.current_user.lower() == "commander":
+    #         # Commander-specific tabs
+    #         self.auth_tab = tk.Frame(self.tab_control)
+    #         self.query_tab = tk.Frame(self.tab_control)
+    #         self.encryption_tab = tk.Frame(self.tab_control)
+    #         self.decryption_tab = tk.Frame(self.tab_control)
+    #         self.log_tab = tk.Frame(self.tab_control)
+
+    #         self.tab_control.add(self.auth_tab, text="Authentication")
+    #         self.tab_control.add(self.query_tab, text="Query")
+    #         self.tab_control.add(self.encryption_tab, text="Encryption")
+    #         self.tab_control.add(self.decryption_tab, text="Decryption")
+    #         self.tab_control.add(self.log_tab, text="Communication Log")
+
+    #         # Initialize tabs
+    #         self.setup_auth_tab()
+    #         self.setup_query_tab()
+    #         self.setup_encryption_tab()
+    #         self.setup_decryption_tab()
+    #         self.setup_log_tab()
+    #     else:
+    #         # Tank-specific tabs
+    #         self.auth_gen_response_tab = tk.Frame(self.tab_control)
+    #         self.response_to_query_tab = tk.Frame(self.tab_control)
+    #         self.encryption_tab = tk.Frame(self.tab_control)
+    #         self.decryption_tab = tk.Frame(self.tab_control)
+    #         self.log_tab = tk.Frame(self.tab_control)
+
+    #         self.tab_control.add(self.auth_gen_response_tab, text="Authentication - Generate Response")
+    #         self.tab_control.add(self.response_to_query_tab, text="Response to Query")
+    #         self.tab_control.add(self.encryption_tab, text="Encryption")
+    #         self.tab_control.add(self.decryption_tab, text="Decryption")
+    #         self.tab_control.add(self.log_tab, text="Communication Log")
+
+    #         # Initialize tabs
+    #         self.setup_auth_gen_response_tab()
+    #         self.setup_response_to_query_tab()
+    #         self.setup_encryption_tab()
+    #         self.setup_decryption_tab()
+    #         self.setup_log_tab()
+
+    #     self.tab_control.pack(expand=True, fill="both")
+    
     def init_left_panel(self, left_panel: tk.Frame) -> None:
         """Initialize the left panel with available users and selection options."""
+         # Clear existing widgets in the left panel
+        for widget in left_panel.winfo_children():
+            widget.destroy()
+
+        # Online Users Label
+        online_label = tk.Label(left_panel,
+            text="Online Users",
+            font=("Arial", 14, "bold"),
+            bg="#4a7abc",
+            fg="white")
+        online_label.pack(fill="x", pady=5)
+
+        # Online Users Listbox
+        self.online_users_listbox = tk.Listbox(left_panel,
+            font=("Arial", 12),
+            height=5,
+            selectmode="single",
+            bg="#e6f0ff")
+        self.online_users_listbox.pack(fill="both", expand=True, padx=10, pady=5)
+
+        # Offline Users Label
+        offline_label = tk.Label(left_panel,
+            text="Offline Users",
+            font=("Arial", 14, "bold"),
+            bg="#4a7abc",
+            fg="white")
+        offline_label.pack(fill="x", pady=5)
+
+        # Offline Users Listbox
+        self.offline_users_listbox = tk.Listbox(left_panel,
+            font=("Arial", 12),
+            height=5,
+            selectmode="single",
+            bg="#f0f0f0")
+        self.offline_users_listbox.pack(fill="both", expand=True, padx=10, pady=5)
+
+        # Refresh the user lists
+        self.refresh_user_lists()
+
         # Users label
         users_label = tk.Label(left_panel,
             text="Available Users",
@@ -555,6 +897,27 @@ class SecureCommunicationSystem:
             fg="white",
             command=self.select_users)
         select_button.pack(fill="x", padx=10, pady=10)
+
+    def refresh_user_lists(self) -> None:
+            """Refresh the online and offline user lists."""
+            # Clear the listboxes
+            self.online_users_listbox.delete(0, tk.END)
+            self.offline_users_listbox.delete(0, tk.END)
+        
+            # Populate the online users list
+            for user in self.online_users:
+                if user != self.current_user:  # Exclude the current user
+                    self.online_users_listbox.insert(tk.END, user)
+        
+            # Populate the offline users list
+            if os.path.exists(CSV_FILE):
+                with open(CSV_FILE, 'r') as file:
+                    reader = csv.reader(file)
+                    next(reader, None)  # Skip header
+                    for row in reader:
+                        username = row[0]
+                        if username not in self.online_users and username != self.current_user:
+                            self.offline_users_listbox.insert(tk.END, username)    
 
     def load_map(self):
         """Load tank locations from CSV and update the map."""
@@ -666,6 +1029,49 @@ class SecureCommunicationSystem:
             command=self.authenticate_connection)
         self.auth_button.place(relx=0.5, rely=0.6, anchor="center")
 
+    def setup_auth_gen_response_tab(self) -> None:
+        """Setup the Authentication - Generate Response tab for Tanks."""
+        frame = tk.Frame(self.auth_gen_response_tab, bg="#e6f0ff", bd=1, relief="solid")
+        frame.place(relx=0.5, rely=0.5, anchor="center", width=400, height=200)
+
+        label = tk.Label(frame,
+            text="Generate Response for Authentication",
+            font=("Arial", 14, "bold"),
+            bg="#4a7abc",
+            fg="white")
+        label.pack(fill="x", pady=10)
+
+        response_label = tk.Label(frame,
+            text="Enter Challenge:",
+            font=("Arial", 12),
+            bg="#e6f0ff")
+        response_label.pack(anchor="w", padx=10, pady=(10, 0))
+
+        self.challenge_entry = tk.Entry(frame, font=("Arial", 12), width=30)
+        self.challenge_entry.pack(padx=10, pady=5)
+
+        generate_button = tk.Button(frame,
+            text="Generate Response",
+            font=("Arial", 12),
+            bg="#4a7abc",
+            fg="white",
+            command=self.generate_response)
+        generate_button.pack(pady=10)
+
+        # Response display box
+        response_display_label = tk.Label(frame,
+            text="Generated Response:",
+            font=("Arial", 12),
+            bg="#e6f0ff")
+        response_display_label.pack(anchor="w", padx=10, pady=(10, 0))
+
+        self.response_display = tk.Text(frame,
+            height=5,
+            width=40,
+            font=("Arial", 11),
+            state="disabled")
+        self.response_display.pack(padx=10, pady=5)
+
     def setup_query_tab(self) -> None:
         """Setup the query tab."""
         # Query frame
@@ -731,6 +1137,35 @@ class SecureCommunicationSystem:
             state="disabled",
             command=self.send_query)
         self.query_button.place(relx=0.5, rely=0.6, anchor="center")
+
+    def setup_response_to_query_tab(self) -> None:
+        """Setup the Response to Query tab for Tanks."""
+        frame = tk.Frame(self.response_to_query_tab, bg="#e6f0ff", bd=1, relief="solid")
+        frame.place(relx=0.5, rely=0.5, anchor="center", width=400, height=200)
+    
+        label = tk.Label(frame,
+            text="Respond to Query",
+            font=("Arial", 14, "bold"),
+            bg="#4a7abc",
+            fg="white")
+        label.pack(fill="x", pady=10)
+    
+        query_label = tk.Label(frame,
+            text="Enter Response:",
+            font=("Arial", 12),
+            bg="#e6f0ff")
+        query_label.pack(anchor="w", padx=10, pady=(10, 0))
+    
+        self.response_entry = tk.Entry(frame, font=("Arial", 12), width=30)
+        self.response_entry.pack(padx=10, pady=5)
+    
+        send_button = tk.Button(frame,
+            text="Send Response",
+            font=("Arial", 12),
+            bg="#4a7abc",
+            fg="white",
+            command=self.send_response)
+        send_button.pack(pady=10)
 
     def setup_encryption_tab(self) -> None:
         """Setup the encryption tab."""
@@ -890,7 +1325,7 @@ class SecureCommunicationSystem:
         self.display_verification_boxes()
     
         # Start the countdown timer
-        timer_value = 180  # Set timer to 30 seconds
+        timer_value = 30  # Set timer to 30 seconds
         self.start_timer(timer_value)
 
         # Automatically send queries to authenticated tanks
@@ -903,21 +1338,6 @@ class SecureCommunicationSystem:
                 self.selected_recipient = f"Tank{tank_id}"  # Set the selected recipient
                 self.send_query()  # Use the send_query method to handle the query process
     
-                # # Prompt user for response to "Are you ready?"
-                # response = self.get_user_input(f"Query for {tank_name}", "Are you ready?")
-                # if not response:
-                #     logging.info(f"No response received from {tank_name}")
-                #     continue
-    
-                # logging.info(f"Response from {tank_name}: {response}")
-    
-                # if response.lower() in ["yes", "okk", "ready"]:
-                #     # Prompt user for location response
-                #     location_response = self.get_user_input(f"Query for {tank_name}", "Give me your location")
-                #     if location_response:
-                #         logging.info(f"Location response from {tank_name}: {location_response}")
-                #     else:
-                #         logging.info(f"No location response received from {tank_name}")
     def send_query_message(self) -> None:
         """Send a message to the selected user and handle the response."""
         if not self.selected_recipient:
@@ -952,6 +1372,7 @@ class SecureCommunicationSystem:
             logging.info(f"Received invalid response from {self.selected_recipient}: {response}")
             self.add_to_log(f"Invalid response received from {self.selected_recipient}: {response}")
             messagebox.showwarning("Invalid Response", f"Received invalid response: {response}")
+        
         def get_user_input(self, title: str, prompt: str) -> Optional[str]:
             """Display a dialog box to get input from the user."""
             input_win = tk.Toplevel(self.root)
@@ -1006,7 +1427,10 @@ class SecureCommunicationSystem:
             right_status_label = tk.Label(self.auth_tab, text=f"Tank {tank_id}: ⏳", font=("Arial", 12), bg="#ffffff")
             right_status_label.place(relx=0.8, rely=0.2 + (tank_id * 0.05), anchor="w")
             self.right_panel_status[tank_id] = right_status_label
-    
+
+        # Refresh the user lists
+        self.refresh_user_lists()
+
     def verify_tank_response(self, tank_id: int, entry: tk.Entry) -> None:
         """Verify the response for a specific tank."""
         response = entry.get()
@@ -1030,19 +1454,66 @@ class SecureCommunicationSystem:
 
         # Verify the response
         if response == expected_response:
-            self.tank_status[tank_id].config(text="✔", bg="green")
-            self.right_panel_status[tank_id].config(text=f"Tank {tank_id}: ✔", bg="green")
-            logging.info(f"Verification result for {tank_name}: Authentication successful")
+            if hasattr(self, 'timer_expired') and self.timer_expired:
+                # Mark as "Responded After Timeout"
+                self.tank_status[tank_id].config(text="✔ (Timeout)", bg="orange")
+                self.right_panel_status[tank_id].config(text=f"Tank {tank_id}: ✔ (Timeout)", bg="orange")
+                logging.info(f"Verification result for {tank_name}: Responded after timeout")
+            else:
+                # Mark as successfully authenticated
+                self.tank_status[tank_id].config(text="✔", bg="green")
+                self.right_panel_status[tank_id].config(text=f"Tank {tank_id}: ✔", bg="green")
+                logging.info(f"Verification result for {tank_name}: Authentication successful")
+            
+            # Add the tank to the online users list
+            if tank_name not in self.online_users:
+                self.online_users.append(tank_name)
+        
         else:
+            # Mark as failed
             self.tank_status[tank_id].config(text="✘", bg="red")
             self.right_panel_status[tank_id].config(text=f"Tank {tank_id}: ✘", bg="red")
             logging.info(f"Verification result for {tank_name}: Authentication failed")
     
-        ## Update the status label
-        #if success:
-        #    self.tank_status[tank_id].config(text="✔", bg="green")
-        #else:
-        #    self.tank_status[tank_id].config(text="✘", bg="red")
+        # Refresh the user lists
+        self.refresh_user_lists()
+
+    def generate_response(self) -> None:
+        """Generate a response for the given challenge."""
+        challenge = self.challenge_entry.get().strip()
+        if not challenge:
+            messagebox.showwarning("Input Required", "Please enter a challenge.")
+            return
+        
+        try:
+            # Simulate response generation
+            tank_id = self.current_user  # Assuming the current user is the tank ID
+            response = f"Response to {challenge}"
+
+            # Display the generated response in the response box
+            self.response_display.config(state="normal")
+            self.response_display.insert("end", f"{tank_id}: {response}\n")
+            self.response_display.config(state="disabled")
+
+            # Print the response to the console
+            print(f"{tank_id}: {response}")
+
+            # Log the generated response
+            logging.info(f"Generated response for {tank_id}: {response}")
+            messagebox.showinfo("Generated Response", f"Generated Response: {response}")
+        except Exception as e:
+            logging.error(f"Error generating response: {e}")
+            messagebox.showerror("Error", "Failed to generate response.")
+
+    def send_response(self) -> None:
+        """Send a response to the query."""
+        response = self.response_entry.get().strip()
+        if not response:
+            messagebox.showwarning("Input Required", "Please enter a response.")
+            return
+    
+        # Simulate sending response
+        messagebox.showinfo("Response Sent", f"Response sent: {response}")
 
     def get_expected_response(self, challenge, secret_key):
         """Returns the expected response based on the challenge type."""
@@ -1073,6 +1544,7 @@ class SecureCommunicationSystem:
 
     def start_timer(self, time_limit: int) -> None:
         """Start the countdown timer for authentication."""
+        self.timer_expired = False  # Flag to track if the timer has expired
         self.timer_label = tk.Label(self.auth_tab, text=f"Timer: {time_limit}s", font=("Arial", 12), bg="#e6f0ff")
         self.timer_label.place(relx=0.5, rely=0.9, anchor="center")
     
@@ -1142,24 +1614,6 @@ class SecureCommunicationSystem:
         logging.warning(f"Query failed: {self.selected_recipient} is not authenticated")
         self.query_status_label.config(
             text=f"Selected User: {self.selected_recipient}\nStatus: Not Authenticated")
-        
-    # def send_query(self) -> None:
-    #     """Send a query to the selected user."""
-    #     if not self.selected_recipient:
-    #         return
-
-    #     logging.info(f"Sending query to {self.selected_recipient}")
-    #     self.query_status_label.config(text="Querying user status...")
-    #     self.root.update()
-    #     self.root.after(1000)  # Simulate delay
-
-    #     # Simulate status
-    #     status = random.choice(["Online", "Away", "Busy", "Offline"])
-    #     self.query_status_label.config(
-    #         text=f"Selected User: {self.selected_recipient}\nStatus: {status}")
-    #     logging.info(f"Query result for {self.selected_recipient}: {status}")
-
-    #     self.add_to_log(f"Queried {self.selected_recipient} - Status: {status}")
 
     def encrypt_and_send(self) -> None:
         """Encrypt and send a message."""
